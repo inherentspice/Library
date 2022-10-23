@@ -1,6 +1,23 @@
 
 const myLibrary = (function() {
-  const myLibrary = [];
+  const myLibrary = [
+    {
+      authorName: 'Ernest Hemingway',
+      bookTitle: 'The Old Man and the Sea',
+      yearPublished: 1952,
+      numberOfPages: 127,
+      isRead: true,
+      id: 1
+    },
+    {
+      authorName: 'Ernest Hemingway',
+      bookTitle: 'The Sun Also Rises',
+      yearPublished: 1926,
+      numberOfPages: 178,
+      isRead: true,
+      id: 2
+    }
+  ];
 
   //cacheDom
   const libraryShelf = document.getElementById('library-shelf');
@@ -18,8 +35,35 @@ const myLibrary = (function() {
   submitButton.addEventListener('click', addBookToLibrary);
   // deleteButton.addEventListener('click', deleteBookFromLibrary);
 
+  _render();
+
   function _render() {
-    console.log(myLibrary)
+    (function() {
+      while (libraryShelf.firstChild) {
+          libraryShelf.removeChild(libraryShelf.firstChild);
+      }
+  })();
+
+    myLibrary.map(book => {
+      let newDiv = document.createElement('div');
+      newDiv.className = 'book';
+      let heading = document.createElement('h3');
+      heading.textContent = book.bookTitle;
+      let author = document.createElement('h4');
+      author.textContent = book.authorName;
+      let published = document.createElement('p');
+      published.textContent = book.yearPublished;
+      let pages = document.createElement('p');
+      pages.textContent = book.numberOfPages;
+      let read = document.createElement('p');
+      read.textContent = book.isRead ? 'Read' : 'Not Read';
+      newDiv.appendChild(heading);
+      newDiv.appendChild(author);
+      newDiv.appendChild(published);
+      newDiv.appendChild(pages);
+      newDiv.appendChild(read);
+      libraryShelf.appendChild(newDiv);
+    })
   }
 
   function bookConstructor() {
@@ -46,7 +90,6 @@ const myLibrary = (function() {
 
   return {
     addBookToLibrary,
-    deleteBookFromLibrary,
-    _render
+    deleteBookFromLibrary
   }
 })();
