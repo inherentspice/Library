@@ -1,3 +1,13 @@
 body {
   background-color:coral;
 }
+
+.form-element {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-element>input {
+  height: min-content;
+}

@@ -76,9 +76,13 @@ const myLibrary = (function() {
       published.textContent = book.yearPublished;
       let pages = document.createElement('p');
       pages.textContent = book.numberOfPages;
+      let isReadDiv = document.createElement('div');
+      isReadDiv.className = 'is-read-div';
       let read = document.createElement('p');
       read.textContent = book.isRead ? 'Read' : 'Not Read';
       let toggleIsRead = document.createElement('button')
+      isReadDiv.appendChild(read);
+      isReadDiv.appendChild(toggleIsRead);
       toggleIsRead.className = `${book.id}`;
       toggleIsRead.id = 'toggle-read';
       toggleIsRead.textContent = book.isRead ? 'mark not read': 'mark read';
@@ -91,8 +95,7 @@ const myLibrary = (function() {
       newDiv.appendChild(author);
       newDiv.appendChild(published);
       newDiv.appendChild(pages);
-      newDiv.appendChild(read);
-      newDiv.appendChild(toggleIsRead);
+      newDiv.appendChild(isReadDiv);
       newDiv.appendChild(deleteIndividualBook);
       libraryShelf.appendChild(newDiv);
     })

@@ -11,11 +11,26 @@
   <div id="library-shelf">
   </div>
   <form id="book-information">
-    <input type="text" name="author" id="author">
-    <input type="text" name="title" id="title">
-    <input type="text" name="year" id="year">
-    <input type="text" name="pages" id="pages">
-    <input type="checkbox" name="isRead" id="isRead">
+    <div class="form-element">
+      <p>author: </p>
+      <input type="text" name="author" id="author">
+    </div>
+    <div class="form-element">
+      <p>book title: </p>
+      <input type="text" name="title" id="title">
+    </div>
+    <div class="form-element">
+      <p>release year: </p>
+      <input type="text" name="year" id="year">
+    </div>
+    <div class="form-element">
+      <p>number of pages: </p>
+      <input type="text" name="pages" id="pages">
+    </div>
+    <div class="form-element">
+      <p>read: </p>
+      <input type="checkbox" name="isRead" id="isRead">
+    </div>
     <button type="submit" id="new-book">add new book</button>
   </form>
 
