@@ -1,3 +1,10 @@
+:root {
+  --color-primary: rgb(255, 127, 80);
+  --color-white: rgb(255, 255, 255);
+  --color-details: rgb(250, 104, 51);
+  --color-secondary: rgb(156, 80, 255);
+}
+
 body {
   background-color:coral;
 }
@@ -10,4 +17,24 @@ body {
 
 .form-element>input {
   height: min-content;
+}
+
+#library-shelf{
+  display: flex;
+  gap: 1rem;
+}
+
+.book {
+  width: 200px;
+  border: 2px solid var(--color-details);
+  padding: 0.75rem;
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  box-shadow: 2px 2px 2px 2px var(--color-details);
+}
+
+.book:hover {
+  background-color: var(--color-details);
+  border: 2px solid var(--color-white);
+  box-shadow: 2px 2px 2px 2px var(--color-white);
 }
