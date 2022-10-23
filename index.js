@@ -35,7 +35,9 @@ const myLibrary = (function() {
   submitButton.addEventListener('click', addBookToLibrary);
   document.body.addEventListener('click', function(event) {
     if (event.target.id === 'delete-button') {
-      deleteBookFromLibrary(event.target.className)
+      deleteBookFromLibrary(event.target.className);
+    } else if (event.target.id === 'toggle-read') {
+      handleIsReadChange(event.target.className);
     }
   })
 
@@ -76,6 +78,10 @@ const myLibrary = (function() {
       pages.textContent = book.numberOfPages;
       let read = document.createElement('p');
       read.textContent = book.isRead ? 'Read' : 'Not Read';
+      let toggleIsRead = document.createElement('button')
+      toggleIsRead.className = `${book.id}`;
+      toggleIsRead.id = 'toggle-read';
+      toggleIsRead.textContent = book.isRead ? 'mark not read': 'mark read';
       let deleteIndividualBook = document.createElement('button');
       deleteIndividualBook.id += 'delete-button';
       deleteIndividualBook.className = `${book.id}`;
@@ -86,6 +92,7 @@ const myLibrary = (function() {
       newDiv.appendChild(published);
       newDiv.appendChild(pages);
       newDiv.appendChild(read);
+      newDiv.appendChild(toggleIsRead);
       newDiv.appendChild(deleteIndividualBook);
       libraryShelf.appendChild(newDiv);
     })
@@ -102,6 +109,14 @@ const myLibrary = (function() {
     const id = myLibrary.length + 1;
 
     return { authorName, bookTitle, yearPublished, numberOfPages, isRead, id}
+  }
+
+  function handleIsReadChange(className) {
+    let bookChange = myLibrary.find(book => book.id === Number(className));
+    myLibrary = myLibrary.filter(book => book.id !== Number(className));
+    bookChange.isRead = !bookChange.isRead;
+    myLibrary = myLibrary.concat(bookChange);
+    _render()
   }
 
   // calls bookConstructor, then pushes new book Object to myLibrary, then re-renders the library
