@@ -1,6 +1,6 @@
 
 const myLibrary = (function() {
-  const myLibrary = [
+  let myLibrary = [
     {
       authorName: 'Ernest Hemingway',
       bookTitle: 'The Old Man and the Sea',
@@ -23,7 +23,6 @@ const myLibrary = (function() {
   const libraryShelf = document.getElementById('library-shelf');
   const form = document.getElementById('book-information');
   const submitButton = document.getElementById('new-book');
-  // const deleteButton = document.getElementById('delete-button');
   const authorInfo = document.getElementById('author');
   const titleInfo = document.getElementById('title');
   const yearInfo = document.getElementById('year');
@@ -33,7 +32,11 @@ const myLibrary = (function() {
   //bindEvents
 
   submitButton.addEventListener('click', addBookToLibrary);
-  // deleteButton.addEventListener('click', deleteBookFromLibrary);
+  document.body.addEventListener('click', function(event) {
+    if (event.target.id === 'delete-button') {
+      deleteBookFromLibrary(event.target.className)
+    }
+  })
 
   _render();
 
@@ -65,11 +68,17 @@ const myLibrary = (function() {
       pages.textContent = book.numberOfPages;
       let read = document.createElement('p');
       read.textContent = book.isRead ? 'Read' : 'Not Read';
+      let deleteIndividualBook = document.createElement('button');
+      deleteIndividualBook.id += 'delete-button';
+      deleteIndividualBook.className = `${book.id}`;
+      deleteIndividualBook.textContent = 'delete book';
+
       newDiv.appendChild(heading);
       newDiv.appendChild(author);
       newDiv.appendChild(published);
       newDiv.appendChild(pages);
       newDiv.appendChild(read);
+      newDiv.appendChild(deleteIndividualBook);
       libraryShelf.appendChild(newDiv);
     })
   }
@@ -86,14 +95,15 @@ const myLibrary = (function() {
   }
 
   function addBookToLibrary(event) {
-    event.preventDefault()
-    const newBook = bookConstructor()
-    myLibrary.push(newBook)
-    _render()
+    event.preventDefault();
+    const newBook = bookConstructor();
+    myLibrary.push(newBook);
+    _render();
   }
 
-  function deleteBookFromLibrary() {
-    console.log('deleting')
+  function deleteBookFromLibrary(className) {
+    libraryShelf.removeChild(libraryShelf.children.item(className - 1));
+    myLibrary = myLibrary.filter(book => book.id !== className);
   }
 
   return {
