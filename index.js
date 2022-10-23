@@ -1,5 +1,6 @@
 
 const myLibrary = (function() {
+  // list that holds the books in our library
   let myLibrary = [
     {
       authorName: 'Ernest Hemingway',
@@ -41,11 +42,16 @@ const myLibrary = (function() {
   _render();
 
   function _render() {
+
+    // first clear the existing entries so that this function doesn't duplicate entries
+
     (function() {
       while (libraryShelf.firstChild) {
           libraryShelf.removeChild(libraryShelf.firstChild);
       }
   })();
+
+    // clear the inputs
 
     (function() {
       authorInfo.value = '';
@@ -54,6 +60,8 @@ const myLibrary = (function() {
       pagesInfo.value = '';
       isReadInfo.value = false;
     })();
+
+    // loop through books in the library and add each to our library-shelf div
 
     myLibrary.map(book => {
       let newDiv = document.createElement('div');
@@ -83,6 +91,8 @@ const myLibrary = (function() {
     })
   }
 
+  // takes the values in each input when submit is clicked and creates a new object for myLibrary
+
   function bookConstructor() {
     const authorName = authorInfo.value;
     const bookTitle = titleInfo.value;
@@ -94,12 +104,16 @@ const myLibrary = (function() {
     return { authorName, bookTitle, yearPublished, numberOfPages, isRead, id}
   }
 
+  // calls bookConstructor, then pushes new book Object to myLibrary, then re-renders the library
+
   function addBookToLibrary(event) {
     event.preventDefault();
     const newBook = bookConstructor();
     myLibrary.push(newBook);
     _render();
   }
+
+  // removes element from DOM and from myLibrary
 
   function deleteBookFromLibrary(className) {
     libraryShelf.removeChild(libraryShelf.children.item(className - 1));
