@@ -44,6 +44,14 @@ const myLibrary = (function() {
       }
   })();
 
+    (function() {
+      authorInfo.value = '';
+      titleInfo.value = '';
+      yearInfo.value = '';
+      pagesInfo.value = '';
+      isReadInfo.value = false;
+    })();
+
     myLibrary.map(book => {
       let newDiv = document.createElement('div');
       newDiv.className = 'book';
