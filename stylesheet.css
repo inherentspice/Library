@@ -1,6 +1,8 @@
 :root {
   --color-primary: rgb(255, 127, 80);
   --color-white: rgb(255, 255, 255);
+  --color-grey: rgb(41, 41, 41);
+  --color-grey-1: rgb(65, 64, 64);
   --color-details: rgb(250, 104, 51);
   --color-secondary: rgb(156, 80, 255);
 }
@@ -50,8 +52,7 @@ body {
 .library>h1 {
   text-align: center;
   font-size: 2em;
-  color: var(--color-secondary);
-  background-color: var(--color-white);
+  color: var(--color-grey);
   padding: 1rem 0;
 }
 
@@ -70,4 +71,53 @@ body {
 .form-element {
   font-weight: 700;
   font-size: 16px;
+  color: var(--color-grey-1);
+}
+
+input{
+  width: 100%;
+  border: 1px solid gray;
+  border-radius: 0.2rem;
+  padding: 0.3rem 0.5rem;
+}
+
+input:focus{
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+button {
+  background-color: white;
+  border: none;
+  border-radius: 6%;
+  box-shadow: 1px 2px 1px 1px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  font-weight: 500;
+  padding: 1em;
+  cursor: pointer;
+
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.329);
+  color: var(--color-white);
+
+}
+
+.is-read-div {
+  display: flex;
+  gap: 1rem;
+}
+
+#delete-button {
+  margin-top: 1rem;
+}
+
+#new-book {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+#new-book:hover {
+  background-color: var(--color-details);
 }
