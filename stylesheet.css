@@ -6,7 +6,10 @@
 }
 
 body {
-  background-color:coral;
+  background-color: var(--color-details);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .form-element {
@@ -28,13 +31,43 @@ body {
   width: 200px;
   border: 2px solid var(--color-details);
   padding: 0.75rem;
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary);
   color: var(--color-white);
-  box-shadow: 2px 2px 2px 2px var(--color-details);
 }
 
 .book:hover {
   background-color: var(--color-details);
   border: 2px solid var(--color-white);
-  box-shadow: 2px 2px 2px 2px var(--color-white);
+}
+
+.library {
+  border: 2px solid var(--color-white);
+  padding: 3rem;
+  background-color: var(--color-white);
+  margin: 1rem;
+}
+
+.library>h1 {
+  text-align: center;
+  font-size: 2em;
+  color: var(--color-secondary);
+  background-color: var(--color-white);
+  padding: 1rem 0;
+}
+
+#book-information {
+  border: 2px solid var(--color-white);
+  padding: 1rem;
+  background-color: var(--color-white);
+  margin: 1rem;
+  margin-top: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  align-items: flex-start;
+}
+
+.form-element {
+  font-weight: 700;
+  font-size: 16px;
 }
